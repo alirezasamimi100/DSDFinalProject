@@ -18,8 +18,10 @@ module infix_to_postfix_evaluator #(
   } state_t;
   state_t state, next_state;
   logic [$clog2(MAXEXPR)-1:0] infix_index;
-  logic [WIDTH-1:0] num, estack_input, estack_output, ostack_input, ostack_output, temp_num;
-  logic is_negative, estack_opcode, ostack_opcode, estack_empty, ostack_empty, reading_number;
+  logic [WIDTH-1:0] num, estack_input, estack_output, temp_num;
+  logic is_negative, estack_empty, ostack_empty, reading_number;
+  logic [7:0] ostack_input, ostack_output;
+  logic [2:0] estack_opcode, ostack_opcode;
   logic [1:0] evalcnt;
 
   stack #(
@@ -31,9 +33,7 @@ module infix_to_postfix_evaluator #(
       .opcode(estack_opcode),
       .input_data(estack_input),
       .output_data(estack_output),
-      .overflow(0),
-      .empty(estack_empty),
-      .full(0)
+      .empty(estack_empty)
   );
   stack #(
       .DEPTH(MAXEXPR),
@@ -44,9 +44,7 @@ module infix_to_postfix_evaluator #(
       .opcode(ostack_opcode),
       .input_data(ostack_input),
       .output_data(ostack_output),
-      .overflow(0),
-      .empty(ostack_empty),
-      .full(0)
+      .empty(ostack_empty)
   );
 
   always_ff @(posedge clk or negedge rst_n) begin
@@ -96,6 +94,7 @@ module infix_to_postfix_evaluator #(
           num <= 0;
         end else begin
           case (infix_input[infix_index])
+            " ": infix_index <= infix_index + 1;
             "+", "*": begin
               if (!ostack_empty && ostack_output != "(" &&
                     ((infix_input[infix_index] == "+" && ostack_output == "*") ||
@@ -147,6 +146,8 @@ module infix_to_postfix_evaluator #(
       end
 
       EVAL: begin
+        ostack_opcode <= 0;
+        estack_opcode <= 0;
         case (evalcnt)
           1: begin
             temp_num <= estack_output;
@@ -159,7 +160,7 @@ module infix_to_postfix_evaluator #(
           end
           3: begin
             estack_input <= temp_num;
-            estack_opcode <= 3'b101;
+            estack_opcode <= 3'b110;
             evalcnt <= 0;
           end
         endcase
