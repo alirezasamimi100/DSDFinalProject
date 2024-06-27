@@ -51,27 +51,27 @@ module stack_tb16;
     #10 opcode = 3'b111;
 
     #10 opcode = 3'b110;
-    input_data = 10;
+    input_data = 16'sh0001;
     #10 opcode = 3'b110;
-    input_data = 20;
+    input_data = -16'sh0002;
     #10 opcode = 3'b100;
 
     #10 opcode = 3'b110;
-    input_data = 16'hFFFF;
+    input_data = -16'sh0003;
     #10 opcode = 3'b110;
-    input_data = 1;
-    #10 opcode = 3'b100;
-
-    #10 opcode = 3'b110;
-    input_data = 5;
-    #10 opcode = 3'b110;
-    input_data = 6;
+    input_data = 16'sh0004;
     #10 opcode = 3'b101;
 
     #10 opcode = 3'b110;
-    input_data = 16'hFFFF;
+    input_data = 16'sh7FFF;
     #10 opcode = 3'b110;
-    input_data = 2;
+    input_data = 16'sh0001;
+    #10 opcode = 3'b100;
+
+    #10 opcode = 3'b110;
+    input_data = -16'sh7FFF;
+    #10 opcode = 3'b110;
+    input_data = -16'sh0002;
     #10 opcode = 3'b101;
 
     #10 $finish;

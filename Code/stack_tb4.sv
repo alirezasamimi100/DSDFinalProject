@@ -51,27 +51,27 @@ module stack_tb4;
     #10 opcode = 3'b111;
 
     #10 opcode = 3'b110;
-    input_data = 5;
+    input_data = 4'sh1;
     #10 opcode = 3'b110;
-    input_data = 2;
+    input_data = -4'sh2;
     #10 opcode = 3'b100;
 
     #10 opcode = 3'b110;
-    input_data = 4'hF;
+    input_data = -4'sh2;
     #10 opcode = 3'b110;
-    input_data = 1;
-    #10 opcode = 3'b100;
-
-    #10 opcode = 3'b110;
-    input_data = 3;
-    #10 opcode = 3'b110;
-    input_data = 4;
+    input_data = 4'sh3;
     #10 opcode = 3'b101;
 
     #10 opcode = 3'b110;
-    input_data = 4'hF;
+    input_data = 4'sh7;
     #10 opcode = 3'b110;
-    input_data = 2;
+    input_data = 4'sh1;
+    #10 opcode = 3'b100;
+
+    #10 opcode = 3'b110;
+    input_data = -4'sh7;
+    #10 opcode = 3'b110;
+    input_data = -4'sh2;
     #10 opcode = 3'b101;
 
     #10 $finish;
