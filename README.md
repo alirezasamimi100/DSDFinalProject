@@ -13,6 +13,8 @@ The module reads the expression from a register array writes the result to the r
 to avoid needing to store the postfix expression. It has 4 states
 with PARSE and EVAL states being the main states. It uses a stack to store the operators and another for the operands.
 
+![ITPE module implementation](Document/image.png)
+
 ## Stack
 
 The stack is implemented in SystemVerilog. It has WIDTH and DEPTH parameters to specify the width of the data and the depth of the stack. The stack has
@@ -21,9 +23,23 @@ the status of the stack.
 
 It is tested using testbenches for 4, 8, 16 and 32 bit data widths.
 
+![Stack Implementation](Document/image-1.png)
+
 ## Testing
 
 The modules have been tested using the testbenches in QuestaIntel.
+
+![Stack 32bit testbench](Document/image-2.png)
+
+![Stack 32bit test waveform](Document/image-4.png)
+
+![ITPE module testbench](Document/image-3.png)
+
+![ITPE module test waveform](Document/image-5.png)
+
+## Tools
+
+QuestaIntel
 
 ## Links
 
